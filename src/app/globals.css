@@ -1,26 +1,43 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-accent: #ff6a3d;
+  --color-bg-primary: #ffffff;
+  --color-bg-inverse: #0a0a0a;
+  --color-surface: #f9fafb;
+  --color-on-surface: #111827;
+  --color-on-surface-variant: #4b5563;
+  --color-outline: #e5e7eb;
+  --color-outline-variant: #d1d5db;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-body: var(--font-body-family), sans-serif;
+  --font-display: var(--font-display-family), sans-serif;
+
+  --spacing-section-gap: 128px;
+  --spacing-margin-desktop: 80px;
+  --spacing-margin-mobile: 20px;
+  --spacing-container-max: 1280px;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-bg-primary);
+  color: var(--color-on-surface);
+  font-family: var(--font-body);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.glass-nav {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.dark .glass-nav {
+  background: rgba(10, 10, 10, 0.7);
+}
+.shader-overlay {
+  mix-blend-mode: screen;
+  opacity: 0.3;
 }
