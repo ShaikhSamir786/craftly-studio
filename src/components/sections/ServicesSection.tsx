@@ -9,7 +9,7 @@ const services: ServiceItem[] = [
     icon: "laptop",
     isFeatured: true,
     gridClass: "col-span-6 md:col-span-3 lg:col-span-3",
-    href: "#",
+    href: "/services#web-dev",
   },
   {
     id: "ai-auto",
@@ -18,7 +18,7 @@ const services: ServiceItem[] = [
     icon: "bot",
     isFeatured: true,
     gridClass: "col-span-6 md:col-span-3 lg:col-span-3",
-    href: "#",
+    href: "/services#ai-auto",
   },
   {
     id: "local-seo",
@@ -27,7 +27,7 @@ const services: ServiceItem[] = [
     icon: "search",
     isFeatured: false,
     gridClass: "col-span-6 md:col-span-3 lg:col-span-2",
-    href: "#",
+    href: "/services#local-seo",
   },
   {
     id: "web-redesign",
@@ -36,7 +36,7 @@ const services: ServiceItem[] = [
     icon: "palette",
     isFeatured: false,
     gridClass: "col-span-6 md:col-span-3 lg:col-span-2",
-    href: "#",
+    href: "/services#web-redesign",
   },
   {
     id: "sys-maintenance",
@@ -45,7 +45,7 @@ const services: ServiceItem[] = [
     icon: "shield",
     isFeatured: false,
     gridClass: "col-span-6 md:col-span-6 lg:col-span-2",
-    href: "#",
+    href: "/services#sys-maintenance",
   },
 ];
 

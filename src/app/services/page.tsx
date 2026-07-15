@@ -1,13 +1,17 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import ServicesSection from "@/components/sections/ServicesSection";
-import FinalCta from "@/components/sections/FinalCta";
-import FaqSection from "@/components/sections/FaqSection";
 import Breadcrumbs from "@/components/seo/Breadcrumbs";
 import JsonLd from "@/components/seo/JsonLd";
 import { serviceSchema, type FaqItem } from "@/lib/seo/schemas";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { SERVICES } from "@/lib/seo/constants";
+
+import ServicesHero from "./components/ServicesHero";
+import ServicesDetail from "./components/ServicesDetail";
+import IndustriesGrid from "./components/IndustriesGrid";
+import ProcessTimeline from "./components/ProcessTimeline";
+import WhyChoose from "./components/WhyChoose";
+import ServicesCta from "./components/ServicesCta";
+import FaqSection from "@/components/sections/FaqSection";
 
 export const metadata: Metadata = buildMetadata({
   title: "Web Development Services in Vapi, Gujarat",
@@ -26,29 +30,34 @@ export const metadata: Metadata = buildMetadata({
 
 const servicesFaqs: FaqItem[] = [
   {
-    question: "What web development services do you offer in Vapi?",
+    question: "How long does a website take?",
     answer:
-      "We offer comprehensive web development services including custom website development, e-commerce solutions, web applications, SEO services, AI automation, business automation & CRM development, branding & UI/UX design, and landing page design. All services are tailored for businesses in Vapi, Daman, Silvassa, and Gujarat.",
+      "A standard business website takes 2-4 weeks. More complex e-commerce stores or custom web applications take 4-12 weeks depending on scope, integrations, and customization. We employ structured milestones to deliver high quality on time.",
   },
   {
-    question: "Do you build websites for specific industries?",
+    question: "Can you redesign an existing website?",
     answer:
-      "Yes! We specialize in websites for manufacturing companies, clinics & hospitals, restaurants, hotels & resorts, real estate agencies, CA firms, interior designers, and educational institutions. Each industry gets a tailored solution addressing specific business needs.",
+      "Yes! We offer complete website redesign services. We'll analyze your current site, identify speed bottlenecks, SEO shortcomings, and UX friction points, then rebuild it with modern tech for higher conversions.",
   },
   {
-    question: "What technologies do you use for website development?",
+    question: "Do you provide SEO?",
     answer:
-      "We use modern, cutting-edge technologies including React, Next.js, TypeScript, Node.js, and Tailwind CSS. These ensure fast loading speeds, excellent SEO performance, and scalable architecture that grows with your business.",
+      "Yes, every website we build is optimized for SEO out-of-the-box (fast speeds, responsive viewports, proper tags). We also provide specialized Local SEO packages to boost your Google Maps and regional rank.",
   },
   {
-    question: "Can you help my existing website rank higher on Google?",
+    question: "Do you build custom software?",
     answer:
-      "Absolutely. Our SEO services include technical SEO audits, local SEO optimization for Vapi and surrounding areas, content optimization, and performance improvements. We help businesses achieve top rankings for relevant local searches.",
+      "Yes, we build custom business applications including custom CRM systems, client portals, B2B product catalogs, workflow tracking, and automated data sync with existing tools like Tally.",
   },
   {
-    question: "Do you provide ongoing maintenance after website launch?",
+    question: "Can AI automate my business?",
     answer:
-      "Yes, we offer comprehensive maintenance packages including security updates, performance monitoring, content updates, backups, and technical support. We ensure your website stays secure, fast, and up-to-date.",
+      "Absolutely. We design AI chatbots for customer support, lead qualification sequences on WhatsApp/Email, internal knowledge base helpers, and custom integrations to automate repetitive tasks.",
+  },
+  {
+    question: "Do you offer maintenance?",
+    answer:
+      "Yes, we provide ongoing website maintenance. This includes server uptime tracking, daily cloud backups, security scans, software updates, regular bug fixes, and monthly performance reports.",
   },
 ];
 
@@ -66,38 +75,37 @@ export default function ServicesPage() {
         />
       ))}
 
-      <section className="pt-48 pb-24 bg-surface text-center">
+      {/* Services Hero Section */}
+      <ServicesHero />
+
+      {/* Breadcrumbs for SEO */}
+      <div className="bg-bg-primary py-2 border-b border-outline">
         <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
           <Breadcrumbs items={[{ label: "Services", href: "/services" }]} />
-          <h1 className="font-display text-5xl md:text-7xl font-extrabold mb-8">
-            Web Development Services in Vapi
-          </h1>
-          <p className="text-xl text-on-surface-variant max-w-2xl mx-auto mb-12">
-            Comprehensive digital solutions engineered for high performance and measurable growth. From custom websites to AI-powered automation, we help businesses in Vapi, Gujarat dominate their market.
-          </p>
-          <div className="flex flex-wrap justify-center gap-3">
-            {SERVICES.map((service) => (
-              <Link
-                key={service.id}
-                href={`/services/${service.slug}`}
-                className="px-4 py-2 text-sm font-medium bg-white border border-outline rounded-full hover:border-accent hover:text-accent transition-colors"
-              >
-                {service.name}
-              </Link>
-            ))}
-          </div>
         </div>
-      </section>
+      </div>
 
-      <ServicesSection />
+      {/* Services Alternating Detail Sections */}
+      <ServicesDetail />
 
+      {/* Industries We Serve Grid */}
+      <IndustriesGrid />
+
+      {/* Process Timeline Section */}
+      <ProcessTimeline />
+
+      {/* Why Choose Craftly Studio Grid */}
+      <WhyChoose />
+
+      {/* FAQ Section */}
       <FaqSection
-        title="Services FAQ"
-        subtitle="Common questions about our web development services in Vapi"
+        title="Frequently Asked Questions"
+        subtitle="Common queries about our web development and digital solutions"
         faqs={servicesFaqs}
       />
-      
-      <FinalCta />
+
+      {/* Final Call To Action */}
+      <ServicesCta />
     </>
   );
 }
