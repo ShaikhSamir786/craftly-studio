@@ -322,6 +322,7 @@ Services:
 2. Local SEO
 3. AI Automation
 4. Website Maintenance
+5. Website Redesign
 
 
 Components:

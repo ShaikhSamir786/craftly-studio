@@ -1,5 +1,7 @@
 
 
+import ContactForm from "@/components/forms/ContactForm";
+
 export const metadata = {
   title: "Contact | Craftly Studio",
   description: "Get in touch with Craftly Studio to start your project.",
@@ -51,29 +53,7 @@ export default function ContactPage() {
           
           <div className="bg-surface p-10 rounded-3xl border border-outline shadow-xl">
             <h3 className="font-display text-2xl font-bold mb-6">Send us a message</h3>
-            <form className="space-y-6">
-                <div className="grid grid-cols-2 gap-6">
-                    <div>
-                        <label className="block text-sm font-bold mb-2">First Name</label>
-                        <input type="text" className="w-full bg-white border border-outline rounded-lg px-4 py-3 focus:outline-none focus:border-accent" placeholder="John" />
-                    </div>
-                    <div>
-                        <label className="block text-sm font-bold mb-2">Last Name</label>
-                        <input type="text" className="w-full bg-white border border-outline rounded-lg px-4 py-3 focus:outline-none focus:border-accent" placeholder="Doe" />
-                    </div>
-                </div>
-                <div>
-                    <label className="block text-sm font-bold mb-2">Email Address</label>
-                    <input type="email" className="w-full bg-white border border-outline rounded-lg px-4 py-3 focus:outline-none focus:border-accent" placeholder="john@company.com" />
-                </div>
-                <div>
-                    <label className="block text-sm font-bold mb-2">Project Details</label>
-                    <textarea className="w-full bg-white border border-outline rounded-lg px-4 py-3 focus:outline-none focus:border-accent min-h-[150px]" placeholder="Tell us about your goals..."></textarea>
-                </div>
-                <button type="button" className="w-full bg-accent text-white font-bold py-4 rounded-lg hover:bg-accent/90 transition-colors shadow-lg shadow-accent/20 cursor-pointer">
-                    Submit Inquiry
-                </button>
-            </form>
+            <ContactForm />
           </div>
         </div>
       </section>

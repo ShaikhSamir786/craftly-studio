@@ -378,6 +378,19 @@ status:
 "published"
 }
 
+Also:
+
+{
+title:
+"Website Redesign",
+
+slug:
+"website-redesign",
+
+status:
+"published"
+}
+
 ```
 
 ---

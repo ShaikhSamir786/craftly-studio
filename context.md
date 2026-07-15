@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-**Craftly Studio** is a full-stack digital agency website with an integrated CMS (Content Management System). It serves as the online presence for a digital studio that offers custom website development, local SEO, AI automation, and website maintenance services.
+**Craftly Studio** is a full-stack digital agency website with an integrated CMS (Content Management System). It serves as the online presence for a digital studio that offers custom website development, local SEO, AI automation, website maintenance, and website redesign services.
 
 The platform has two primary purposes:
 
@@ -369,7 +369,7 @@ Global site settings (site name, description, social links, etc.).
 ### Prerequisites
 
 - Node.js 18+ (recommended: 20+)
-- npm, yarn, or pnpm
+- pnpm (recommended), npm, or yarn
 - Firebase project (for backend services)
 - Git
 
@@ -381,7 +381,7 @@ git clone <repository-url>
 cd craftly-studio
 
 # Install dependencies
-npm install
+pnpm install
 
 # Set up environment variables
 cp .env.example .env.local
@@ -407,10 +407,10 @@ NEXT_PUBLIC_GA_MEASUREMENT_ID=
 
 | Command | Description |
 |---------|-------------|
-| `npm run dev` | Start development server |
-| `npm run build` | Build production bundle |
-| `npm run start` | Start production server |
-| `npm run lint` | Run ESLint |
+| `pnpm dev` | Start development server |
+| `pnpm build` | Build production bundle |
+| `pnpm start` | Start production server |
+| `pnpm lint` | Run ESLint |
 
 ---
 

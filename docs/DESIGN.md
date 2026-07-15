@@ -337,7 +337,7 @@ Copy: `"Start Your Project"` (primary site-wide CTA), `"Get Free Website Audit"`
 </div>
 ```
 
-Four services, outcome-first labels: **Custom Website Development** → "Unique websites designed around your business." · **Local SEO** → "Help customers discover your business." · **AI Automation** → "Use intelligent systems to save time." · **Maintenance** → "Keep your website secure and improving."
+Five services, outcome-first labels: **Custom Website Development** → "Unique websites designed around your business." · **Local SEO** → "Help customers discover your business." · **AI Automation** → "Use intelligent systems to save time." · **Maintenance** → "Keep your website secure and improving." · **Website Redesign** → "Transform outdated sites into modern, high-converting experiences."
 
 ### 8.5 Portfolio Card
 
