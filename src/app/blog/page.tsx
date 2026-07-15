@@ -1,16 +1,29 @@
+import type { Metadata } from "next";
 import FinalCta from "@/components/sections/FinalCta";
+import Breadcrumbs from "@/components/seo/Breadcrumbs";
+import { buildMetadata } from "@/lib/seo/metadata";
 import Link from "next/link";
 
-export const metadata = {
-  title: "Blog | Craftly Studio",
-  description: "Insights on web development, SEO, and digital strategy.",
-};
+export const metadata: Metadata = buildMetadata({
+  title: "Web Development Blog | Tips & Insights",
+  description:
+    "Expert insights on web development, SEO, AI automation & digital strategy for businesses in Vapi, Gujarat. Learn how to grow your business online.",
+  path: "/blog",
+  keywords: [
+    "web development blog",
+    "SEO tips Vapi",
+    "digital marketing insights",
+    "website tips for businesses",
+    "AI automation blog",
+  ],
+});
 
 export default function BlogPage() {
   return (
     <>
       <section className="pt-48 pb-24 bg-surface">
         <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+          <Breadcrumbs items={[{ label: "Blog", href: "/blog" }]} />
           <h1 className="font-display text-5xl md:text-7xl font-extrabold mb-8 text-center">
             Insights &amp; Updates
           </h1>

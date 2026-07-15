@@ -1,17 +1,32 @@
-
-
+import type { Metadata } from "next";
 import ContactForm from "@/components/forms/ContactForm";
+import Breadcrumbs from "@/components/seo/Breadcrumbs";
+import JsonLd from "@/components/seo/JsonLd";
+import { localBusinessSchema } from "@/lib/seo/schemas";
+import { buildMetadata } from "@/lib/seo/metadata";
 
-export const metadata = {
-  title: "Contact | Craftly Studio",
-  description: "Get in touch with Craftly Studio to start your project.",
-};
+export const metadata: Metadata = buildMetadata({
+  title: "Contact Craftly Studio | Web Development Agency Vapi, Gujarat",
+  description:
+    "Contact Craftly Studio for website development, SEO & digital solutions in Vapi, Gujarat. Get a free quote for your business website. Call +91 98765 43210.",
+  path: "/contact",
+  keywords: [
+    "contact web developer Vapi",
+    "hire website developer Gujarat",
+    "web development quote Vapi",
+    "Craftly Studio contact",
+    "website company Vapi phone",
+  ],
+});
 
 export default function ContactPage() {
   return (
     <>
+      <JsonLd data={localBusinessSchema()} />
       <section className="pt-48 pb-24 bg-white">
-        <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-2 gap-16">
+        <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+          <Breadcrumbs items={[{ label: "Contact", href: "/contact" }]} />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
           <div>
             <h1 className="font-display text-5xl md:text-7xl font-extrabold mb-8">
               Let&apos;s build something <span className="text-accent">great</span>.
@@ -54,6 +69,7 @@ export default function ContactPage() {
           <div className="bg-surface p-10 rounded-3xl border border-outline shadow-xl">
             <h3 className="font-display text-2xl font-bold mb-6">Send us a message</h3>
             <ContactForm />
+          </div>
           </div>
         </div>
       </section>

@@ -43,6 +43,7 @@ export default function MobileNav() {
   const navLinks = [
     { href: "/portfolio", label: "Work" },
     { href: "/services", label: "Services" },
+    { href: "/industries/manufacturing", label: "Industries" },
     { href: "/blog", label: "Blog" },
     { href: "/about", label: "About" },
   ];
