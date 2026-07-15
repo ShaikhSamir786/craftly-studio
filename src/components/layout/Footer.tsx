@@ -129,8 +129,7 @@ export default function Footer() {
         <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
           <p>&copy; {new Date().getFullYear()} Craftly Studio. All rights reserved.</p>
           <div className="flex gap-8">
-            <Link href="/privacy" className="hover:text-white">Privacy Policy</Link>
-            <Link href="/terms" className="hover:text-white">Terms of Service</Link>
+            <Link href="/terms" className="hover:text-white">Terms &amp; Policies</Link>
             <Link href="/admin/login" className="hover:text-white">Admin Login</Link>
           </div>
         </div>

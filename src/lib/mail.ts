@@ -12,6 +12,7 @@ const createTransporter = () => {
     return null;
   }
   
+  console.log(`[createTransporter] Creating SMTP transporter for ${smtpHost}:${smtpPort} (user: ${smtpUser})...`);
   return nodemailer.createTransport({
     host: smtpHost,
     port: smtpPort,
@@ -20,6 +21,12 @@ const createTransporter = () => {
       user: smtpUser,
       pass: smtpPass,
     },
+    tls: {
+      rejectUnauthorized: false, // Prevents certificate verification hangs on some platforms
+    },
+    connectionTimeout: 10000, // 10 seconds connection timeout
+    greetingTimeout: 10000,   // 10 seconds greeting timeout
+    socketTimeout: 15000,     // 15 seconds socket idle timeout
   });
 };
 
@@ -81,6 +88,7 @@ Craftly Studio Team
   }
 
   try {
+    console.log(`[sendContactEmails] Dispatching admin notification email to: ${contactEmail}...`);
     // 1. Send admin notification
     await transporter.sendMail({
       from: `"Craftly Studio Contact" <${smtpUser}>`,
@@ -90,7 +98,9 @@ Craftly Studio Team
       html: adminHtml,
       replyTo: data.email, // Allows admin to click "Reply" to respond directly to the user
     });
+    console.log("[sendContactEmails] Admin notification email sent successfully.");
 
+    console.log(`[sendContactEmails] Dispatching user auto-reply email to: ${data.email}...`);
     // 2. Send user auto-reply
     await transporter.sendMail({
       from: `"Craftly Studio" <${smtpUser}>`,
@@ -99,10 +109,11 @@ Craftly Studio Team
       text: userText,
       html: userHtml,
     });
+    console.log("[sendContactEmails] User auto-reply email sent successfully.");
 
     return { success: true };
   } catch (error) {
-    console.error("Nodemailer error: Failed to send emails", error);
+    console.error("[sendContactEmails] Nodemailer error: Failed to send emails", error);
     throw error;
   }
 }

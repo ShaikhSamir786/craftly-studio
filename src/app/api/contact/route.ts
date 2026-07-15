@@ -22,6 +22,8 @@ export async function POST(request: Request) {
     
     const { firstName, lastName, email, phone, company, message } = validationResult.data;
     const name = `${firstName} ${lastName}`.trim();
+
+    console.log("[API contact] Request data validation succeeded. Preparing database lead payload.");
     
     // 1. Store lead in Firestore 'leads' collection
     const leadData = {
@@ -35,9 +37,23 @@ export async function POST(request: Request) {
       createdAt: serverTimestamp(),
     };
     
-    await addDoc(collection(db, "leads"), leadData);
+    console.log("[API contact] Storing lead in Firestore leads collection...");
+    try {
+      const dbPromise = addDoc(collection(db, "leads"), leadData);
+      
+      // Fallback timeout to prevent Firestore from hanging indefinitely if connection fails
+      const timeoutPromise = new Promise((_, reject) =>
+        setTimeout(() => reject(new Error("Firestore database write timed out")), 4000)
+      );
+      
+      await Promise.race([dbPromise, timeoutPromise]);
+      console.log("[API contact] Lead stored in Firestore successfully.");
+    } catch (dbError: any) {
+      console.error("[API contact] Warning: Firestore database write failed or timed out. Proceeding to email dispatch.", dbError.message || dbError);
+    }
     
     // 2. Dispatch emails (auto-reply & notification)
+    console.log("[API contact] Dispatching contact emails...");
     await sendContactEmails({
       name,
       email,
@@ -45,6 +61,7 @@ export async function POST(request: Request) {
       company,
       message,
     });
+    console.log("[API contact] Emails sent successfully.");
     
     return NextResponse.json({ 
       success: true, 
