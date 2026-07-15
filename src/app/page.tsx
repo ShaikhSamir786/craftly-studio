@@ -10,15 +10,16 @@ import FinalCta from "@/components/sections/FinalCta";
 import FaqSection from "@/components/sections/FaqSection";
 import JsonLd from "@/components/seo/JsonLd";
 import { faqSchema, type FaqItem } from "@/lib/seo/schemas";
+import { SITE_URL } from "@/lib/seo/constants";
 
 export const metadata: Metadata = {
   title: "Craftly Studio | Best Website Development Company in Vapi, Gujarat",
   description:
     "Craftly Studio is the best website development company in Vapi, Gujarat. Custom websites, e-commerce, SEO & AI solutions for manufacturing, healthcare & local businesses.",
   keywords:
-    "website development Vapi, web development company Vapi, best website developer Vapi, website designer Gujarat, digital agency Vapi, web design Vapi",
+    "website development Vapi, web development company Vapi, best website developer Vapi, website designer Gujarat, digital agency Vapi, web design Vapi, custom website development Vapi, Next.js developer India, React developer Vapi, full stack developer Vapi, SEO services Vapi, local SEO Gujarat, ecommerce development Vapi, AI solutions Vapi, business automation Vapi, web design near me, website designer near Daman, Silvassa web developer, web design Valsad, software company Vapi, IT company Vapi GIDC, industrial website design Vapi, factory website Gujarat, clinic website design Vapi, restaurant website design Vapi, hire website developer Vapi, affordable website development, Craftly Studio, Craftly Studio Vapi",
   alternates: {
-    canonical: "https://craftlystudio.com",
+    canonical: SITE_URL,
   },
 };
 

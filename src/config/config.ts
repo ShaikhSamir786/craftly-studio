@@ -12,6 +12,6 @@ export const config = {
     smtpPort: process.env.SMTP_PORT ? parseInt(process.env.SMTP_PORT, 10) : 587,
     smtpUser: process.env.SMTP_USER || "",
     smtpPass: process.env.SMTP_PASS || "",
-    contactEmail: process.env.CONTACT_EMAIL || "hello@craftlystudio.com",
+    contactEmail: process.env.CONTACT_EMAIL || "craftly.studio.vapi@gmail.com",
   }
 } as const;

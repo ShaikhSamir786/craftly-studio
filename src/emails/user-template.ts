@@ -156,8 +156,8 @@ export function getUserEmailTemplate(name: string, message: string): string {
       </div>
       <div class="footer">
         <div class="social-links">
-          <a href="https://craftlystudio.com" class="social-link">Website</a>
-          <a href="mailto:hello@craftlystudio.com" class="social-link">Email Us</a>
+          <a href="https://craftly-studio.vercel.app" class="social-link">Website</a>
+          <a href="mailto:craftly.studio.vapi@gmail.com" class="social-link">Email Us</a>
         </div>
         <p class="footer-text">Building modern websites & digital experiences.</p>
         <p class="footer-text" style="font-size: 12px; margin-bottom: 0;">&copy; ${new Date().getFullYear()} Craftly Studio. All rights reserved.</p>

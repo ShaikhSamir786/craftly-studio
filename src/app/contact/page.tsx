@@ -4,11 +4,12 @@ import Breadcrumbs from "@/components/seo/Breadcrumbs";
 import JsonLd from "@/components/seo/JsonLd";
 import { localBusinessSchema } from "@/lib/seo/schemas";
 import { buildMetadata } from "@/lib/seo/metadata";
+import { BUSINESS_INFO } from "@/lib/seo/constants";
 
 export const metadata: Metadata = buildMetadata({
   title: "Contact Craftly Studio | Web Development Agency Vapi, Gujarat",
   description:
-    "Contact Craftly Studio for website development, SEO & digital solutions in Vapi, Gujarat. Get a free quote for your business website. Call +91 98765 43210.",
+    `Contact Craftly Studio for website development, SEO & digital solutions in Vapi, Gujarat. Get a free quote for your business website. Call ${BUSINESS_INFO.phone}.`,
   path: "/contact",
   keywords: [
     "contact web developer Vapi",
@@ -16,6 +17,17 @@ export const metadata: Metadata = buildMetadata({
     "web development quote Vapi",
     "Craftly Studio contact",
     "website company Vapi phone",
+    "get in touch Craftly Studio",
+    "free website consultation Vapi",
+    "request website quote Gujarat",
+    "discuss project web agency Vapi",
+    "talk to web designer Vapi",
+    "website developer email Vapi",
+    "digital agency Vapi contact number",
+    "schedule meeting web developer",
+    "start a project Craftly Studio",
+    "Vapi web developer whatsapp",
+    "work with Craftly Studio",
   ],
 });
 
@@ -42,7 +54,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                         <h4 className="font-bold text-lg">Email Us</h4>
-                        <p className="text-on-surface-variant">hello@craftlystudio.com</p>
+                        <a href={`mailto:${BUSINESS_INFO.email}`} className="text-on-surface-variant hover:text-accent transition-colors">{BUSINESS_INFO.email}</a>
                     </div>
                 </div>
                 <div className="flex items-start gap-4">
@@ -51,7 +63,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                         <h4 className="font-bold text-lg">Call Us</h4>
-                        <p className="text-on-surface-variant">+91 98765 43210</p>
+                        <a href={`tel:${BUSINESS_INFO.phone.replace(/\s/g, "")}`} className="text-on-surface-variant hover:text-accent transition-colors">{BUSINESS_INFO.phone}</a>
                     </div>
                 </div>
                 <div className="flex items-start gap-4">

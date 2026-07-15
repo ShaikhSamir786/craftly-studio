@@ -56,7 +56,7 @@ export default function LoginPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="w-full bg-white border border-outline rounded-lg px-4 py-3 focus:outline-none focus:border-accent" 
-              placeholder="admin@craftlystudio.com"
+              placeholder="admin@craftly-studio.vercel.app"
               required
             />
           </div>
