@@ -9,7 +9,7 @@ import {
 } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import type { BlogPostFormData } from "@/types/blog";
-import { slugify, estimateReadTime, parseTags } from "./blog-utils";
+import { slugify, estimateReadTime, parseTags } from "./utils";
 
 const COLLECTION = "blogPosts";
 

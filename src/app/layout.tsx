@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Manrope } from "next/font/google";
 import "./globals.css";
 
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
+import PublicShell from "@/components/layout/PublicShell";
+import Analytics from "@/lib/analytics";
 import JsonLd from "@/components/seo/JsonLd";
 import { organizationSchema, localBusinessSchema, websiteSchema } from "@/lib/seo/schemas";
 import { SITE_URL, SITE_NAME, BUSINESS_INFO, KEYWORDS } from "@/lib/seo/constants";
@@ -72,7 +72,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: "your-google-verification-code",
+    google: "H6Pq0eI_0M2sSwSWyHpuCbS7ufcyBMaw_r2k7VCv9Ok",
   },
 };
 
@@ -87,15 +87,14 @@ export default function RootLayout({
       className={`${plusJakartaSans.variable} ${manrope.variable} h-full antialiased`}
     >
       <head>
+        <Analytics />
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
         <JsonLd data={organizationSchema()} />
         <JsonLd data={localBusinessSchema()} />
         <JsonLd data={websiteSchema()} />
       </head>
       <body className="min-h-full flex flex-col bg-bg-primary text-on-surface font-body">
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <PublicShell>{children}</PublicShell>
       </body>
     </html>
   );
