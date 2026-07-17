@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import FinalCta from "@/components/sections/FinalCta";
 import Breadcrumbs from "@/components/seo/Breadcrumbs";
-import JsonLd from "@/components/seo/JsonLd";
-import { organizationSchema } from "@/lib/seo/schemas";
 import { buildMetadata } from "@/lib/seo/metadata";
 
 export const metadata: Metadata = buildMetadata({
@@ -36,7 +34,6 @@ export const metadata: Metadata = buildMetadata({
 export default function AboutPage() {
   return (
     <>
-      <JsonLd data={organizationSchema()} />
       <section className="pt-48 pb-24 bg-bg-inverse text-white">
         <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
           <Breadcrumbs items={[{ label: "About", href: "/about" }]} />

@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import FinalCta from "@/components/sections/FinalCta";
 import Breadcrumbs from "@/components/seo/Breadcrumbs";
-import JsonLd from "@/components/seo/JsonLd";
-import { organizationSchema } from "@/lib/seo/schemas";
 import { buildMetadata } from "@/lib/seo/metadata";
 
 export const metadata: Metadata = buildMetadata({
@@ -101,8 +99,6 @@ const futureGoals = [
 export default function MissionPage() {
   return (
     <>
-      <JsonLd data={organizationSchema()} />
-
       {/* ─── Hero ───────────────────────────────────────────── */}
       <section className="pt-48 pb-24 bg-bg-inverse text-white">
         <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">

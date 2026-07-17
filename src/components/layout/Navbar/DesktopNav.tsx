@@ -6,8 +6,9 @@ export default function DesktopNav() {
     <>
       {/* Centered navigation links */}
       <div className="hidden md:flex items-center gap-8">
-        <NavLink href="/portfolio">Work</NavLink>
         <NavLink href="/services">Services</NavLink>
+        <NavLink href="/portfolio">Work</NavLink>
+        <NavLink href="/industries/manufacturing">Industries</NavLink>
         <NavLink href="/blog">Blog</NavLink>
         <NavLink href="/about">About</NavLink>
       </div>
