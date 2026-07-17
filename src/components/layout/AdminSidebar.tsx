@@ -5,12 +5,10 @@ import { usePathname } from "next/navigation";
 
 const navItems = [
   { label: "Dashboard", href: "/admin", icon: "dashboard" },
-  { label: "Services", href: "/admin/services", icon: "design_services" },
   { label: "Blog", href: "/admin/blog", icon: "article" },
-  { label: "Portfolio", href: "/admin/portfolio", icon: "work" },
+  { label: "Inquiries", href: "/admin/inquiries", icon: "mail" },
   { label: "Testimonials", href: "/admin/testimonials", icon: "star" },
   { label: "Media", href: "/admin/media", icon: "image" },
-  { label: "Settings", href: "/admin/settings", icon: "settings" },
 ];
 
 export default function AdminSidebar() {

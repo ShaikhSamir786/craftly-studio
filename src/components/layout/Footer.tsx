@@ -130,6 +130,7 @@ export default function Footer() {
           <p>&copy; {new Date().getFullYear()} Craftly Studio. All rights reserved.</p>
           <div className="flex gap-8">
             <Link href="/terms" className="hover:text-white">Terms &amp; Policies</Link>
+            <Link href="/sitemap" className="hover:text-white">Sitemap</Link>
           </div>
         </div>
       </div>
