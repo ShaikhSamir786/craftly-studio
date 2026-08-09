@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import FinalCta from "@/components/sections/FinalCta";
 import Breadcrumbs from "@/components/seo/Breadcrumbs";
+import JsonLd from "@/components/seo/JsonLd";
 import { buildMetadata } from "@/lib/seo/metadata";
+import { websiteSchema } from "@/lib/seo/schemas";
+import { BLOG_POSTS } from "@/lib/blog/posts";
 import Link from "next/link";
 
 export const metadata: Metadata = buildMetadata({
@@ -35,6 +38,7 @@ export const metadata: Metadata = buildMetadata({
 export default function BlogPage() {
   return (
     <>
+      <JsonLd data={websiteSchema()} />
       <section className="pt-48 pb-24 bg-surface">
         <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
           <Breadcrumbs items={[{ label: "Blog", href: "/blog" }]} />
@@ -42,27 +46,48 @@ export default function BlogPage() {
             Insights &amp; Updates
           </h1>
           <p className="text-xl text-on-surface-variant max-w-2xl mx-auto text-center mb-16">
-            The latest thoughts on digital infrastructure, SEO, and modern web development.
+            The latest thoughts on digital infrastructure, SEO, and modern web
+            development — written for businesses in Vapi and Gujarat.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[1, 2, 3, 4, 5, 6].map((i) => (
-              <Link href={`/blog/post-${i}`} key={i} className="group flex flex-col bg-white border border-outline rounded-2xl overflow-hidden hover:border-accent transition-all duration-300">
-                <div className="aspect-video bg-gray-100 overflow-hidden relative">
-                    <div className="absolute inset-0 flex items-center justify-center text-gray-400 text-sm">Image Placeholder</div>
-                    <div className="absolute inset-0 bg-accent/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            {BLOG_POSTS.map((post) => (
+              <Link
+                href={`/blog/${post.slug}`}
+                key={post.id}
+                className="group flex flex-col bg-white border border-outline rounded-2xl overflow-hidden hover:border-accent transition-all duration-300"
+              >
+                <div className="aspect-video bg-surface overflow-hidden relative flex items-center justify-center">
+                  <span className="material-symbols-outlined text-5xl text-outline-variant group-hover:text-accent transition-colors">
+                    article
+                  </span>
+                  <div className="absolute inset-0 bg-accent/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 </div>
                 <div className="p-6 flex-1 flex flex-col">
                   <div className="flex items-center gap-4 text-xs font-bold text-accent uppercase tracking-widest mb-3">
-                    <span>Engineering</span>
-                    <span>•</span>
-                    <span>5 min read</span>
+                    <span>{post.category}</span>
+                    <span className="text-on-surface-variant">•</span>
+                    <span className="text-on-surface-variant">{post.readTime} min read</span>
                   </div>
-                  <h3 className="font-display text-2xl font-bold mb-3 group-hover:text-accent transition-colors">How to Optimize Core Web Vitals in 2024</h3>
+                  <h3 className="font-display text-2xl font-bold mb-3 group-hover:text-accent transition-colors">
+                    {post.title}
+                  </h3>
                   <p className="text-on-surface-variant line-clamp-3 mb-6 flex-1">
-                    A deep dive into the latest strategies for improving loading speed, interactivity, and visual stability for Next.js applications.
+                    {post.excerpt}
                   </p>
-                  <span className="text-sm font-bold flex items-center gap-2 group-hover:text-accent">Read Article <span className="material-symbols-outlined text-sm">arrow_forward</span></span>
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs text-on-surface-variant">
+                      {new Date(post.datePublished).toLocaleDateString("en-IN", {
+                        day: "numeric",
+                        month: "short",
+                        year: "numeric",
+                      })}
+                    </span>
+                    <span className="text-sm font-bold flex items-center gap-2 group-hover:text-accent">
+                      Read Article{" "}
+                      <span className="material-symbols-outlined text-sm">arrow_forward</span>
+                    </span>
+                  </div>
                 </div>
               </Link>
             ))}

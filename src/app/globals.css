@@ -19,10 +19,15 @@
   --spacing-container-max: 1280px;
 }
 
+html {
+  scroll-behavior: auto;
+}
+
 body {
   background-color: var(--color-bg-primary);
   color: var(--color-on-surface);
   font-family: var(--font-body);
+  overflow-x: hidden;
 }
 
 .text-balance {

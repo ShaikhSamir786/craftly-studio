@@ -15,9 +15,9 @@ import { SITE_URL } from "@/lib/seo/constants";
 export const metadata: Metadata = {
   title: "Craftly Studio | Best Website Development Company in Vapi, Gujarat",
   description:
-    "Craftly Studio is the best website development company in Vapi, Gujarat. Custom websites, e-commerce, SEO & AI solutions for manufacturing, healthcare & local businesses.",
+    "Craftly Studio is a website development & software company in Vapi, Gujarat. Custom websites, e-commerce, SEO company services & AI solutions for manufacturing, healthcare & local businesses.",
   keywords:
-    "website development Vapi, web development company Vapi, best website developer Vapi, website designer Gujarat, digital agency Vapi, web design Vapi, custom website development Vapi, Next.js developer India, React developer Vapi, full stack developer Vapi, SEO services Vapi, local SEO Gujarat, ecommerce development Vapi, AI solutions Vapi, business automation Vapi, web design near me, website designer near Daman, Silvassa web developer, web design Valsad, software company Vapi, IT company Vapi GIDC, industrial website design Vapi, factory website Gujarat, clinic website design Vapi, restaurant website design Vapi, hire website developer Vapi, affordable website development, Craftly Studio, Craftly Studio Vapi",
+    "website development Vapi, web development company Vapi, website design company Vapi, best website developer Vapi, website designer Gujarat, digital agency Vapi, web design Vapi, custom website development Vapi, Next.js developer India, React developer Vapi, full stack developer Vapi, SEO services Vapi, SEO company Vapi, local SEO Gujarat, branding company Vapi, ecommerce development Vapi, AI solutions Vapi, business automation Vapi, web design near me, website designer near Daman, Silvassa web developer, web design Valsad, software company Vapi, software company in Vapi, IT company Vapi GIDC, industrial website design Vapi, factory website Gujarat, clinic website design Vapi, restaurant website design Vapi, hire website developer Vapi, affordable website development, Craftly Studio, Craftly Studio Vapi",
   alternates: {
     canonical: SITE_URL,
   },

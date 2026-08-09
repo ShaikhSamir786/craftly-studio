@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans, Manrope } from "next/font/google";
 import "./globals.css";
 
 import PublicShell from "@/components/layout/PublicShell";
+import SmoothScroll from "@/components/layout/SmoothScroll";
 import Analytics from "@/lib/analytics";
 import JsonLd from "@/components/seo/JsonLd";
 import { organizationSchema, localBusinessSchema, websiteSchema } from "@/lib/seo/schemas";
@@ -94,6 +95,7 @@ export default function RootLayout({
         <JsonLd data={websiteSchema()} />
       </head>
       <body className="min-h-full flex flex-col bg-bg-primary text-on-surface font-body">
+        <SmoothScroll />
         <PublicShell>{children}</PublicShell>
       </body>
     </html>

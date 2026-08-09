@@ -151,6 +151,11 @@ const SERVICE_FAQS: Record<string, FaqItem[]> = {
       answer:
         "Local SEO helps your business appear in 'near me' searches and Google Maps results for Vapi, Daman, Silvassa, and surrounding areas. It's crucial because 46% of Google searches have local intent, and most users choose businesses on the first page.",
     },
+    {
+      question: "Why choose a local SEO company in Vapi?",
+      answer:
+        "A local SEO company in Vapi understands the regional market, competition, and search behavior better than a distant agency. We know the industries that dominate GIDC Vapi — manufacturing, clinics, and local services — and optimize your business to rank above them in Google Maps and organic results for Vapi and surrounding areas.",
+    },
   ],
   "ai-solutions": [
     {
@@ -232,6 +237,11 @@ const SERVICE_FAQS: Record<string, FaqItem[]> = {
       answer:
         "Absolutely. We offer brand refresh and complete rebranding services. We'll analyze your current brand, market position, and competition to create a modern identity that resonates with your target audience.",
     },
+    {
+      question: "What makes Craftly the best branding company in Vapi?",
+      answer:
+        "We're a full-service branding company in Vapi that combines strategy with design. Instead of just delivering a logo, we build a complete brand system — strategy, identity, guidelines, and UI/UX — so your business looks consistent and trustworthy across every touchpoint. That end-to-end approach is why Vapi businesses rate our branding services among the best.",
+    },
   ],
   "landing-pages-portfolio": [
     {
@@ -258,6 +268,33 @@ const SERVICE_FAQS: Record<string, FaqItem[]> = {
       question: "Can you help with ad campaign landing pages?",
       answer:
         "Yes, we create dedicated landing pages optimized for Google Ads, Facebook Ads, and Instagram campaigns. Each page is designed to match ad messaging and maximize conversion rates for your specific audience.",
+    },
+  ],
+  "software-development": [
+    {
+      question: "What does a software company in Vapi do?",
+      answer:
+        "A software company in Vapi designs and builds custom business software — CRMs, ERPs, management systems, client portals, and internal tools. At Craftly Studio we tailor every system to your exact workflows rather than forcing you into off-the-shelf software that doesn't fit.",
+    },
+    {
+      question: "How much does custom software development cost in Vapi?",
+      answer:
+        "Custom software development in Vapi starts from ₹1,00,000 for basic business tools and ranges to ₹10,00,000+ for enterprise-grade systems. The cost depends on features, integrations, and complexity. Contact us for a free, detailed estimate.",
+    },
+    {
+      question: "Why choose a local software company instead of a big vendor?",
+      answer:
+        "A local software company like Craftly Studio gives you direct access to the developers, faster turnaround, on-site support, and solutions priced for Indian businesses. Big vendors add overhead and disconnect you from the people actually building your software.",
+    },
+    {
+      question: "Which technologies do you use for software development?",
+      answer:
+        "We build with React and Next.js for the frontend, Node.js for backend APIs, and Firebase or PostgreSQL for databases. This modern stack delivers fast, secure, and scalable software that's easy to maintain and extend.",
+    },
+    {
+      question: "Can you integrate custom software with our existing tools?",
+      answer:
+        "Yes. We integrate with Tally, WhatsApp Business, Google Workspace, ERP systems, payment gateways, and third-party APIs so your new software works seamlessly with the tools your team already uses.",
     },
   ],
 };
@@ -330,7 +367,7 @@ const SERVICE_CONTENT: Record<string, ServiceContent> = {
   },
   "seo-services": {
     intro:
-      "Dominate local search results with Craftly Studio's SEO services in Vapi, Gujarat. We help businesses rank #1 on Google for high-intent local searches, drive organic traffic, and convert visitors into customers through technical SEO, content optimization, and local SEO strategies.",
+      "Dominate local search results with Craftly Studio's SEO services in Vapi, Gujarat. As the SEO company in Vapi that businesses trust, we help you rank #1 on Google for high-intent local searches, drive organic traffic, and convert visitors into customers through technical SEO, content optimization, and local SEO strategies.",
     features: [
       { title: "Technical SEO", description: "Site speed, core web vitals, schema markup, crawlability, and indexation optimization." },
       { title: "Local SEO", description: "Google Business Profile, local citations, map pack optimization for Vapi and surrounding areas." },
@@ -387,7 +424,7 @@ const SERVICE_CONTENT: Record<string, ServiceContent> = {
   },
   "branding-ui-ux": {
     intro:
-      "Build a powerful brand identity with Craftly Studio's branding and UI/UX design services in Vapi, Gujarat. We create memorable logos, cohesive brand systems, and intuitive user interfaces that build trust, attract customers, and convert visitors into loyal clients.",
+      "Build a powerful brand identity with Craftly Studio's branding services in Vapi, Gujarat. As a branding company in Vapi, we create memorable logos, cohesive brand systems, and intuitive user interfaces that build trust, attract customers, and convert visitors into loyal clients. Whether you need a new brand or a refresh, we deliver some of the best branding services in Vapi.",
     features: [
       { title: "Logo Design", description: "Professional, memorable logos that represent your business values and industry." },
       { title: "Brand Identity", description: "Complete visual systems including colors, typography, patterns, and usage guidelines." },
@@ -421,6 +458,25 @@ const SERVICE_CONTENT: Record<string, ServiceContent> = {
       "Showcase your work with stunning portfolios",
       "Fast loading for better ad quality scores",
       "Mobile-optimized for India's smartphone users",
+    ],
+  },
+  "software-development": {
+    intro:
+      "Looking for a software company in Vapi? Craftly Studio is a custom software development company near you, building CRMs, ERPs, management systems, and business applications for companies across Vapi GIDC and Gujarat. We design, build, and support software tailored to your exact processes — so your business can automate operations, cut manual work, and scale without limits.",
+    features: [
+      { title: "Custom CRM", description: "Sales pipelines, lead tracking, and customer relationship management built around your workflow." },
+      { title: "ERP Systems", description: "Manufacturing and business ERP with production, inventory, purchase, and finance modules." },
+      { title: "Business Portals", description: "Client, vendor, and employee portals with role-based access and self-service features." },
+      { title: "Web Applications", description: "Scalable React and Next.js applications that run fast on every device." },
+      { title: "API Integration", description: "Connect with Tally, WhatsApp, payment gateways, and any third-party service." },
+      { title: "Cloud & Security", description: "Enterprise-grade hosting with 99.9% uptime, backups, and access control." },
+    ],
+    benefits: [
+      "Software built for your exact business processes",
+      "One software company that also handles your website",
+      "Save hours of manual data entry every week",
+      "Real-time visibility into business performance",
+      "Ongoing support, training, and maintenance included",
     ],
   },
 };
