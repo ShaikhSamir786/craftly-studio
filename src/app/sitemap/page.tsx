@@ -4,6 +4,7 @@ import Breadcrumbs from "@/components/seo/Breadcrumbs";
 import FinalCta from "@/components/sections/FinalCta";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { SERVICES, INDUSTRIES } from "@/lib/seo/constants";
+import { BLOG_POSTS } from "@/lib/blog/posts";
 
 export const metadata: Metadata = buildMetadata({
   title: "Sitemap - Craftly Studio",
@@ -92,6 +93,24 @@ export default function SitemapPage() {
                       className="block p-4 rounded-xl border border-outline hover:border-accent hover:bg-surface transition-all text-on-surface font-medium"
                     >
                       {industry.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h2 className="font-display text-2xl font-bold mb-6 text-accent">
+                Blog Posts
+              </h2>
+              <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                {BLOG_POSTS.map((post) => (
+                  <li key={post.id}>
+                    <Link
+                      href={`/blog/${post.slug}`}
+                      className="block p-4 rounded-xl border border-outline hover:border-accent hover:bg-surface transition-all text-on-surface font-medium"
+                    >
+                      {post.title}
                     </Link>
                   </li>
                 ))}
