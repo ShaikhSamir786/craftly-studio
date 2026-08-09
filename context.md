@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-**Craftly Studio** is a full-stack digital agency website with an integrated CMS (Content Management System). It serves as the online presence for a digital studio that offers custom website development, local SEO, AI automation, website maintenance, and website redesign services.
+**Craftly Studio** is a full-stack digital agency website with an integrated CMS (Content Management System). It serves as the online presence for a digital studio based in **Vapi, Gujarat** that offers custom website development, local SEO, AI automation, website maintenance, and website redesign services.
 
 The platform has two primary purposes:
 
@@ -13,7 +13,7 @@ The platform has two primary purposes:
 
 > "Not another template website. A digital experience crafted for your business."
 
-The project is currently in **early development** — the codebase is an unmodified Next.js scaffold with extensive planning documentation but no custom components, routes, or business logic implemented yet.
+The project is in **active early development** — the public site, admin CMS (blog + media + inquiries), Firebase backend, SEO system, and email pipeline are substantially implemented. Remaining work includes services/portfolio/testimonials CRUD, real auth, and testing.
 
 ---
 
@@ -28,37 +28,70 @@ Craftly Studio solves this by providing:
 - SEO-optimized architecture for organic growth
 - A scalable foundation for future AI-powered features
 
-**Business goals:** Generate leads, build credibility as a premium studio, rank for local search terms, convert visitors into consultation requests, and create recurring revenue through maintenance services.
+**Business goals:** Generate leads, build credibility as a premium studio, rank for local search terms (Vapi/Gujarat), convert visitors into consultation requests, and create recurring revenue through maintenance services.
 
 ---
 
 ## Key Features
 
-### Public Website (Visitor-Facing)
+### Public Website (Visitor-Facing) — Implemented
 
-| Page | Route | Description |
-|------|-------|-------------|
-| Homepage | `/` | Hero, problem statement, services, industries, portfolio preview, process, testimonials, CTA |
-| About | `/about` | Story, mission, values, team, approach |
-| Service Detail | `/services/[slug]` | Dynamic pages with hero, benefits, process, FAQ, CTA |
-| Portfolio Listing | `/portfolio` | Grid of project cards with industry, challenge, solution, result |
-| Case Study | `/portfolio/[slug]` | Detailed project walkthrough: client, challenge, solution, implementation, result |
-| Blog Listing | `/blog` | Featured article, categories, article cards |
-| Blog Article | `/blog/[slug]` | Full article with author, date, content, related posts, CTA |
-| Contact | `/contact` | Lead form, WhatsApp button, email, location, FAQ |
+| Page | Route | Status |
+|------|-------|--------|
+| Homepage | `/` | Implemented — hero, problem statement, services, industries, portfolio preview, process, testimonials, CTA |
+| About | `/about` | Implemented |
+| Mission | `/mission` | Implemented |
+| Services Listing | `/services` | Implemented |
+| Service Detail | `/services/[slug]` | Implemented — hero, benefits, process, FAQ, CTA |
+| Industries | `/industries/[slug]` | Implemented |
+| Portfolio Listing | `/portfolio` | Implemented — grid of project cards |
+| Blog Listing | `/blog` | Implemented — featured article, article cards |
+| Contact | `/contact` | Implemented — lead form with Firestore + email |
+| Privacy | `/privacy` | Implemented |
+| Terms | `/terms` | Implemented (1240 lines) |
+| Sitemap | `/sitemap` | Implemented |
+| Not Found | 404 | Implemented |
 
-### Admin CMS (Authenticated)
+**Planned / Not yet built (public):**
+- Blog Article `/blog/[slug]`
+- Case Study `/portfolio/[slug]`
+
+### Admin CMS (Authenticated) — Implemented
 
 | Feature | Route | Description |
 |---------|-------|-------------|
-| Login | `/admin/login` | Firebase Authentication (email/password, optional Google) |
-| Dashboard | `/admin` | Stats cards for services, blogs, portfolio, leads |
-| Service Management | `/admin/services` | CRUD with title, description, images, features, SEO fields |
-| Blog Management | `/admin/blogs` | Rich text editor, cover image, categories, tags, SEO, draft/publish |
-| Portfolio Management | `/admin/portfolio` | Client name, project description, industry, images, results |
-| Testimonial Management | `/admin/testimonials` | Client name, review, company, image, rating |
-| Media Management | `/admin/media` | Firebase Storage upload, delete, preview |
-| SEO Settings | `/admin/seo` | Page title, meta description, OG image, keywords, structured data |
+| Login | `/admin/login` | Env-var credential check + `localStorage` session flag (simulated auth) |
+| Dashboard | `/admin` | Stats overview (blog/media counts, lead counts) |
+| Blog Management | `/admin/blog` | List, create (`/new`), edit (`/[slug]/edit`) — Firestore CRUD |
+| Inquiries | `/admin/inquiries` | Lead inbox with status (new/contacted/converted) |
+| Media Management | `/admin/media` | Cloudinary upload, list, delete + Firestore metadata |
+
+**Planned / Not yet built (admin):**
+- Service Management `/admin/services`
+- Portfolio Management `/admin/portfolio`
+- Testimonial Management `/admin/testimonials`
+- SEO Settings `/admin/seo`
+
+### API Routes — Implemented
+
+| Route | Method | Purpose |
+|-------|--------|---------|
+| `/api/contact` | `POST` | Zod-validated lead → Firestore `leads` + Nodemailer emails |
+| `/api/media` | `POST` | Cloudinary upload + Firestore `media` record |
+| `/api/media/[id]` | `DELETE` | Remove Cloudinary asset + Firestore doc |
+
+### Email — Implemented
+
+- Nodemailer SMTP service (`src/lib/mail.ts`)
+- HTML templates for admin + user (`src/emails/admin-template.ts`, `src/emails/user-template.ts`)
+
+### SEO — Implemented
+
+- Metadata for every public page, `generateMetadata()` for dynamic pages
+- JSON-LD structured data (Organization, Service, Article, LocalBusiness) via `src/lib/seo/schemas.ts`
+- Auto-generated `sitemap.ts` and `robots.ts`
+- Google Analytics GA4 component
+- Google Search Console verification
 
 ### Planned Future Features (v2)
 
@@ -66,6 +99,8 @@ Craftly Studio solves this by providing:
 - AI content assistant for admins (blog drafts, SEO descriptions)
 - Lead management dashboard (internal CRM)
 - Client portal, project tracking, invoice management
+- Services, portfolio, and testimonials CMS CRUD
+- Real Firebase Auth (email/password + roles) to replace simulated login
 
 ---
 
@@ -75,29 +110,33 @@ Craftly Studio solves this by providing:
 
 | Technology | Version | Purpose |
 |-----------|---------|---------|
-| Next.js | 16.2.10 | App Router, SSR, SSG, routing, performance |
+| Next.js | 16.2.10 | App Router, SSR, SSG, routing, performance (React Compiler enabled) |
 | React | 19.2.4 | UI library |
-| TypeScript | ^5 | Type safety, maintainability |
+| TypeScript | ^5 | Type safety, maintainability (strict mode) |
 | Tailwind CSS | ^4 | Utility-first styling via `@tailwindcss/postcss` |
-| shadcn/ui | (planned) | Accessible, customizable component library |
-| Framer Motion | (planned) | Animations and transitions |
+| Framer Motion | 12.42.2 | Animations and transitions |
+| Lucide React | 1.24.0 | Icons |
+| shadcn/ui | (not installed) | Planned component library — currently custom Tailwind components |
+| Google Fonts | — | Plus Jakarta Sans + Manrope (self-hosted via `next/font/google`) |
 
 ### Backend
 
 | Technology | Purpose |
 |-----------|---------|
-| Firebase Firestore | NoSQL database for content, leads, settings |
-| Firebase Authentication | Admin auth (email/password, optional Google) |
-| Firebase Storage | Image and media file storage |
+| Firebase Firestore | NoSQL database — collections: `blogPosts`, `leads`, `media` |
+| Firebase Auth | Initialized but auth is currently simulated (env-var check + localStorage) |
+| Firebase Storage | Initialized (`src/lib/firebase.ts`) but not yet used — media goes through Cloudinary |
+| Cloudinary | Image/file upload, storage, and delivery (v2 `cloudinary` SDK) |
+| Nodemailer | SMTP email dispatch for contact form |
 
 ### Forms & Validation
 
 | Technology | Purpose |
 |-----------|---------|
 | React Hook Form | Form state management |
-| Zod | Schema validation |
+| Zod | Schema validation (`src/utils/validation.ts`) |
 
-### Testing (Planned)
+### Testing (Planned — NOT set up)
 
 | Technology | Purpose |
 |-----------|---------|
@@ -105,15 +144,16 @@ Craftly Studio solves this by providing:
 | React Testing Library | Component testing (forms, interactive components) |
 | Playwright | End-to-end testing (user journeys, admin workflows) |
 
+> **Note:** No test files, test script, or testing dependencies exist in the repo yet.
+
 ### Deployment & Analytics
 
 | Technology | Purpose |
 |-----------|---------|
 | Vercel | Frontend hosting and deployment |
 | Firebase Cloud | Backend services |
-| Google Analytics | Traffic tracking |
-| Google Search Console | SEO monitoring |
-| Vercel Analytics | Performance monitoring |
+| Google Analytics | Traffic tracking (GA4 component in root layout) |
+| Google Search Console | SEO monitoring (verification meta) |
 
 ### Build Tools
 
@@ -121,246 +161,146 @@ Craftly Studio solves this by providing:
 |-----------|---------|---------|
 | ESLint | ^9 | Code linting (flat config, `eslint-config-next`) |
 | PostCSS | — | CSS processing (`@tailwindcss/postcss` plugin) |
-| React Compiler | (via `babel-plugin-react-compiler`) | Automatic memoization optimization |
+| React Compiler | (via `babel-plugin-react-compiler`) | Automatic memoization optimization (`reactCompiler: true`) |
 
 ---
 
-## Folder Structure
-
-### Current State (Scaffold)
+## Folder Structure — Current State
 
 ```
 craftly-studio/
-├── .git/
-├── .gitignore
-├── .next/                    # Build output (minimal)
-├── agents/                   # AI agent definitions (for AI coding assistants)
-├── AGENTS.md                 # AI agent instructions for Next.js
-├── CLAUDE.md                 # Pointer to AGENTS.md
-├── context.md                # Repository context document
-├── docs/                     # Project specification documents
-│   ├── 01_PRD.md             # Product Requirements Document
-│   ├── 02_TECHNICAL_DESIGN.md # Technical Design Document
-│   ├── 03_UI_UX.md           # UI/UX Specification
-│   ├── 04_AI_RULES.md        # AI Coding Guidelines
-│   ├── 05_TASKS.md           # Development Roadmap (33 tasks, 7 phases)
-│   └── DESIGN.md             # Visual Design Specification
-├── eslint.config.mjs         # ESLint 9 flat config
-├── next-env.d.ts             # Next.js TypeScript declarations
-├── next.config.ts            # Next.js config (reactCompiler: true)
-├── node_modules/
-├── package.json
-├── package-lock.json
-├── postcss.config.mjs        # PostCSS config (Tailwind v4)
-├── public/                   # Static assets (default SVGs)
+├── .env.example               # 15 env var placeholders (Firebase, SMTP, GA, Cloudinary)
+├── .gitignore                 # Ignores .env*, .next/, node_modules/, etc.
+├── agents/                    # AI agent definitions (for AI coding assistants)
+├── AGENTS.md                  # AI agent instructions for Next.js
+├── CLAUDE.md                  # Pointer to AGENTS.md
+├── context.md                 # This document
+├── docs/                      # Project specification documents
+│   ├── 01_PRD.md
+│   ├── 02_TECHNICAL_DESIGN.md
+│   ├── 03_UI_UX.md
+│   ├── 04_AI_RULES.md
+│   ├── 05_TASKS.md            # Development Roadmap (33 tasks, 7 phases)
+│   └── DESIGN.md
+├── eslint.config.mjs          # ESLint 9 flat config
+├── next.config.ts             # reactCompiler: true, image remote patterns
+├── postcss.config.mjs         # Tailwind v4 PostCSS plugin
+├── pnpm-workspace.yaml        # Build-script allowlist
+├── public/
 ├── src/
-│   └── app/
-│       ├── favicon.ico
-│       ├── globals.css       # Tailwind v4 import + CSS vars
-│       ├── layout.tsx        # Root layout (Geist fonts, metadata)
-│       └── page.tsx          # Home page (default create-next-app template)
-└── tsconfig.json
-```
-
-### Planned Architecture
-
-```
-craftly-studio/
-├── agents/                   # AI agent definitions (for AI coding assistants)
-│   └── (agent config files to be added)
-├── src/
-├── app/                      # Next.js App Router (routes and pages)
-│   ├── (public)/             # Public route group
-│   │   ├── page.tsx          # Homepage
+│   ├── app/                   # Next.js App Router (routes and pages)
+│   │   ├── layout.tsx         # Root layout (fonts, SEO metadata, JSON-LD, PublicShell)
+│   │   ├── globals.css        # Tailwind v4 theme tokens
+│   │   ├── page.tsx           # Homepage
+│   │   ├── not-found.tsx
+│   │   ├── robots.ts
+│   │   ├── sitemap.ts
 │   │   ├── about/
-│   │   │   └── page.tsx
-│   │   ├── services/
-│   │   │   └── [slug]/
-│   │   │       └── page.tsx
-│   │   ├── portfolio/
-│   │   │   ├── page.tsx
-│   │   │   └── [slug]/
-│   │   │       └── page.tsx
-│   │   ├── blog/
-│   │   │   ├── page.tsx
-│   │   │   └── [slug]/
-│   │   │       └── page.tsx
-│   │   └── contact/
-│   │       └── page.tsx
-│   ├── (admin)/              # Admin route group
 │   │   ├── admin/
-│   │   │   ├── layout.tsx
-│   │   │   ├── page.tsx              # Dashboard
-│   │   │   ├── login/
-│   │   │   │   └── page.tsx
-│   │   │   ├── services/
-│   │   │   │   └── page.tsx
-│   │   │   ├── blogs/
-│   │   │   │   └── page.tsx
-│   │   │   ├── portfolio/
-│   │   │   │   └── page.tsx
-│   │   │   ├── testimonials/
-│   │   │   │   └── page.tsx
-│   │   │   ├── media/
-│   │   │   │   └── page.tsx
-│   │   │   └── seo/
-│   │   │       └── page.tsx
-│   │   └── ...
-│   ├── layout.tsx            # Root layout
-│   ├── globals.css
-│   ├── not-found.tsx
-│   └── error.tsx
-├── components/
-│   ├── ui/                   # shadcn/ui base components
-│   │   ├── Button.tsx
-│   │   ├── Card.tsx
-│   │   ├── Input.tsx
-│   │   ├── Dialog.tsx
-│   │   └── Form.tsx
-│   ├── layout/               # Structural components
-│   │   ├── Navbar.tsx
-│   │   ├── Footer.tsx
-│   │   ├── Container.tsx
-│   │   ├── Section.tsx
-│   │   └── Breadcrumb.tsx
-│   ├── sections/             # Page section components
-│   │   ├── Hero.tsx
-│   │   ├── CTA.tsx
-│   │   ├── ServiceCard.tsx
-│   │   ├── PortfolioCard.tsx
-│   │   ├── TestimonialCard.tsx
-│   │   ├── IndustryCard.tsx
-│   │   ├── FAQAccordion.tsx
-│   │   └── ProcessTimeline.tsx
-│   └── forms/                # Form components
-│       ├── Input.tsx
-│       ├── Textarea.tsx
-│       ├── Select.tsx
-│       ├── FileUpload.tsx
-│       └── ContactForm.tsx
-├── features/                 # Feature-specific modules
-│   ├── admin/                # CMS dashboard logic
-│   ├── auth/                 # Authentication logic
-│   ├── blog/                 # Blog system logic
-│   ├── portfolio/            # Portfolio system logic
-│   ├── services/             # Services system logic
-│   └── contact/              # Contact/lead form logic
-├── lib/
-│   ├── firebase/
-│   │   ├── firebase.ts       # Firebase app initialization
-│   │   ├── auth.ts           # Firebase Auth helpers
-│   │   ├── firestore.ts      # Firestore helpers
-│   │   └── storage.ts        # Firebase Storage helpers
-│   └── utils.ts              # General utilities
-├── hooks/                    # Custom React hooks
-├── types/                    # TypeScript type definitions
-│   ├── service.ts
-│   ├── blog.ts
-│   ├── portfolio.ts
-│   ├── testimonial.ts
-│   ├── lead.ts
-│   └── user.ts
-├── utils/                    # Utility functions
-│   ├── formatDate.ts
-│   ├── uploadImage.ts
-│   └── validation.ts
-└── config/                   # Configuration constants
-    ├── navigation.ts
-    └── site.ts
+│   │   │   ├── (dashboard)/   # Route group — AuthGuard + AdminSidebar + AdminTopbar
+│   │   │   │   ├── page.tsx   # Dashboard
+│   │   │   │   ├── blog/      # Blog list + new/ + [slug]/edit/
+│   │   │   │   ├── inquiries/
+│   │   │   │   └── media/
+│   │   │   └── login/
+│   │   ├── api/
+│   │   │   ├── contact/       # POST lead
+│   │   │   └── media/         # POST upload, DELETE [id]
+│   │   ├── blog/              # Listing page
+│   │   ├── contact/
+│   │   ├── industries/[slug]/
+│   │   ├── mission/
+│   │   ├── portfolio/
+│   │   ├── privacy/
+│   │   ├── services/
+│   │   │   ├── page.tsx
+│   │   │   ├── [slug]/page.tsx
+│   │   │   └── components/    # IndustriesGrid, ProcessTimeline, ServicesCta, etc.
+│   │   ├── sitemap/
+│   │   └── terms/
+│   ├── components/
+│   │   ├── auth/              # AuthGuard
+│   │   ├── forms/             # BlogPostForm, ContactForm
+│   │   ├── layout/            # AdminSidebar, AdminTopbar, Footer, Navbar(+Navbar/), PublicShell
+│   │   ├── sections/          # HeroSection, ServiceCard, TestimonialSection, etc.
+│   │   └── seo/               # Breadcrumbs, JsonLd
+│   ├── config/
+│   │   └── config.ts          # Firebase + mail config from env vars
+│   ├── constants/             # service-constants.ts (empty)
+│   ├── emails/                # admin-template.ts, user-template.ts (HTML templates)
+│   ├── hooks/                 # useAuth, useMediaQuery, useScrollNavbar
+│   ├── lib/
+│   │   ├── analytics.tsx      # GA4 script component
+│   │   ├── cloudinary.ts      # Cloudinary SDK client
+│   │   ├── firebase.ts        # Single Firebase init (app, db, auth, storage)
+│   │   ├── mail.ts            # Nodemailer SMTP service
+│   │   ├── firebase/
+│   │   │   ├── blog/          # queries + mutations (blogPosts)
+│   │   │   ├── contact/       # mutations (leads)
+│   │   │   ├── lead/          # queries (leads)
+│   │   │   └── media/         # queries (media)
+│   │   └── seo/               # constants, metadata, schemas
+│   ├── types/                 # blog.ts, lead.ts, media.ts, service.ts
+│   └── utils/
+│       └── validation.ts      # Zod schemas (contactForm, blogPost)
+└── tsconfig.json              # strict, @/* → ./src/*
 ```
+
+> **Note:** `src/features/` (documented in AGENTS.md) does not exist yet. There is no `src/components/ui/` (no shadcn/ui). `src/constants/service-constants.ts` is empty; `CloudTransition.tsx` and `PageHeader.tsx` are 1-line stubs.
 
 ---
 
 ## Database Schema (Firestore Collections)
 
-### `users`
+### `blogPosts` — Implemented
 | Field | Type | Description |
 |-------|------|-------------|
-| id | string | Document ID |
-| email | string | Admin email |
-| name | string | Admin display name |
-| role | string | `admin` or `editor` |
-| createdAt | timestamp | Creation date |
-| updatedAt | timestamp | Last update |
-
-### `services`
-| Field | Type | Description |
-|-------|------|-------------|
-| id | string | Document ID |
-| title | string | Service name |
-| slug | string | URL slug |
-| shortDescription | string | Brief description |
-| description | string | Full description |
-| image | string | Cover image URL |
-| features | string[] | Feature list |
-| category | string | Service category |
-| status | string | `published` or `draft` |
-| seo | object | SEO metadata (title, description, keywords) |
-| createdAt | timestamp | Creation date |
-| updatedAt | timestamp | Last update |
-
-### `blogs`
-| Field | Type | Description |
-|-------|------|-------------|
-| id | string | Document ID |
+| id | string | Document ID (auto-generated) |
 | title | string | Article title |
-| slug | string | URL slug |
-| content | string | Article content (rich text) |
+| slug | string | URL slug (auto from title if empty) |
 | excerpt | string | Short summary |
-| coverImage | string | Cover image URL |
+| content | string | Article content |
+| coverImage | string | Cover image URL (Cloudinary) |
 | category | string | Article category |
-| tags | string[] | Tag list |
+| tags | string[] | Tag list (parsed from comma string) |
 | author | string | Author name |
 | status | string | `published` or `draft` |
-| seo | object | SEO metadata |
-| publishedAt | timestamp | Publish date |
-| createdAt | timestamp | Creation date |
+| readTime | number | Estimated read time (auto-calculated) |
+| seo | object | SEO metadata (title, description, keywords[]) |
+| publishedAt | timestamp | Publish date (null when draft) |
+| createdAt | timestamp | Creation date (serverTimestamp) |
+| updatedAt | timestamp | Last update |
 
-### `portfolio`
+### `leads` — Implemented
 | Field | Type | Description |
 |-------|------|-------------|
-| id | string | Document ID |
-| title | string | Project title |
-| clientName | string | Client name |
-| slug | string | URL slug |
-| industry | string | Industry category |
-| problem | string | Challenge description |
-| solution | string | Solution description |
-| result | string | Outcome description |
-| images | string[] | Image URLs |
-| technologies | string[] | Tech stack used |
-| testimonial | string | Client testimonial |
-| createdAt | timestamp | Creation date |
-
-### `testimonials`
-| Field | Type | Description |
-|-------|------|-------------|
-| id | string | Document ID |
-| name | string | Client name |
-| company | string | Company name |
-| message | string | Testimonial text |
-| image | string | Client photo URL |
-| rating | number | Rating (1-5) |
-| status | string | `active` or `inactive` |
-
-### `leads`
-| Field | Type | Description |
-|-------|------|-------------|
-| id | string | Document ID |
-| name | string | Contact name |
+| id | string | Document ID (auto-generated) |
+| name | string | Contact name (first + last) |
 | email | string | Contact email |
 | phone | string | Phone number |
 | company | string | Company name |
 | message | string | Inquiry message |
-| source | string | Lead source (contact form, WhatsApp, etc.) |
+| source | string | Lead source (e.g. `contact_form`) |
 | status | string | `new`, `contacted`, `converted` |
 | createdAt | timestamp | Submission date |
 
-### `pages`
-Used for CMS-managed page content and SEO metadata.
+### `media` — Implemented
+| Field | Type | Description |
+|-------|------|-------------|
+| id | string | Document ID (auto-generated) |
+| fileName | string | Original file name |
+| fileUrl | string | Cloudinary delivery URL |
+| fileType | string | MIME type |
+| fileSize | number | Size in bytes |
+| publicId | string | Cloudinary public ID (for deletion) |
+| createdAt | timestamp | Upload date |
 
-### `settings`
-Global site settings (site name, description, social links, etc.).
+### Planned Collections (not yet implemented)
+- `users` — admin users with roles (`admin`/`editor`)
+- `services` — service CRUD
+- `portfolio` — case studies
+- `testimonials` — client reviews
+- `pages` / `settings` — CMS-managed page content and site settings
 
 ---
 
@@ -371,6 +311,8 @@ Global site settings (site name, description, social links, etc.).
 - Node.js 18+ (recommended: 20+)
 - pnpm (recommended), npm, or yarn
 - Firebase project (for backend services)
+- Cloudinary account (for media)
+- SMTP credentials (for contact emails)
 - Git
 
 ### Installation
@@ -385,7 +327,7 @@ pnpm install
 
 # Set up environment variables
 cp .env.example .env.local
-# Edit .env.local with your Firebase credentials
+# Edit .env.local with your credentials
 ```
 
 ### Environment Variables (`.env.local`)
@@ -399,8 +341,22 @@ NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=
 NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=
 NEXT_PUBLIC_FIREBASE_APP_ID=
 
-# Analytics (optional, added post-launch)
+# Admin Authentication (simulated login)
+NEXT_PUBLIC_ADMIN_EMAIL=
+NEXT_PUBLIC_ADMIN_PASSWORD=
+
+# SMTP Email
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USER=
+SMTP_PASS=
+CONTACT_EMAIL=
+
+# Google Analytics
 NEXT_PUBLIC_GA_MEASUREMENT_ID=
+
+# Cloudinary
+CLOUDINARY_URL=
 ```
 
 ### Available Scripts
@@ -420,48 +376,52 @@ NEXT_PUBLIC_GA_MEASUREMENT_ID=
 
 The application uses **hybrid rendering**:
 
-- **Static pages** (`/about`, `/contact`, `/privacy`, `/terms`): Generated at build time via static generation.
-- **Dynamic content pages** (`/services/[slug]`, `/blog/[slug]`, `/portfolio/[slug]`): Data fetched from Firestore at request time or revalidated via ISR.
+- **Static pages** (`/about`, `/contact`, `/privacy`, `/terms`, etc.): Generated at build time.
+- **Dynamic content pages** (`/services/[slug]`, `/industries/[slug]`): Data-driven from local constants/SEO data.
+- **Admin pages**: Client-rendered, protected by `AuthGuard`.
+- **API routes** (`/api/*`): Server-side route handlers using Next 16 conventions (`params` is a `Promise`, awaited).
 
 ### Server vs. Client Components
 
-- **Server Components (default):** Used for pages, data fetching, and layout. No `"use client"` directive needed.
-- **Client Components (`"use client"`):** Used only when required — forms, interactive dashboards, rich editors, authentication UI, animations.
+- **Server Components (default):** Used for pages, data fetching, and layout.
+- **Client Components (`"use client"`):** Forms, admin dashboard, auth UI, interactive sections.
 
 ### Data Flow
 
-**Public Website:**
+**Public Contact Form:**
 ```
-User → Next.js Server Component → Firestore Query → Rendered HTML → Browser
+User → ContactForm (React Hook Form + Zod) → POST /api/contact → Firestore `leads` + Nodemailer emails
 ```
 
-**Admin Content Creation:**
+**Admin Blog Content Creation:**
 ```
-Admin → Firebase Auth → Admin Dashboard → Firestore Write → Website Updated
+Admin → Login → Admin Dashboard → BlogPostForm → Firestore `blogPosts` write
+```
+
+**Admin Media Upload:**
+```
+Admin → /admin/media → POST /api/media → Cloudinary upload → Firestore `media` record
 ```
 
 ### Authentication & Authorization
 
-- Firebase Authentication for admin access.
-- Role-based access control: `admin` (full CRUD) and `editor` (limited permissions).
-- All `/admin/*` routes are protected and require valid Firebase Auth token + role verification.
+- **Current:** Simulated auth — login page checks against `NEXT_PUBLIC_ADMIN_EMAIL` / `NEXT_PUBLIC_ADMIN_PASSWORD` env vars and sets a `craftly_admin_auth` flag in `localStorage`. `AuthGuard` (client) redirects unauthenticated users to `/admin/login`.
+- **Planned:** Firebase Auth (email/password + roles `admin`/`editor`) replacing the simulated login.
 
-### Security Rules
+### Security Notes
 
-- Only authenticated admins can write to Firestore.
-- Public users can only read published content.
-- All forms require validation (Zod schemas).
-- File uploads restricted by size and allowed formats.
-- API keys and credentials stored in `.env.local`, never committed.
+- Forms validated with Zod before any write.
+- Media uploads go through a server route (API key stays server-side).
+- Admin pages have a `noindex` robots directive.
+- API keys and credentials live in `.env.local` — never committed.
+- **Caveat:** current admin "auth" is client-side only (localStorage) — it is NOT real security. Real Firebase Auth + role verification is a roadmap item.
 
 ### Performance Targets
 
 - Lighthouse score above 90
-- Image optimization via Next.js `<Image>` component
-- Server-side rendering for dynamic content
+- Image optimization via Next.js `<Image>` component (remote patterns: `lh3.googleusercontent.com`)
 - Static generation where possible
-- Lazy loading for below-the-fold content
-- Firestore query optimization
+- React Compiler enabled for automatic memoization
 
 ---
 
@@ -473,18 +433,18 @@ Admin → Firebase Auth → Admin Dashboard → Firestore Write → Website Upda
 - **Components:** Small, reusable, single-responsibility. PascalCase naming (e.g., `ServiceCard.tsx`).
 - **Utilities:** camelCase naming (e.g., `formatDate.ts`).
 - **Imports:** Use `@/*` path alias mapping to `./src/*`.
-- **Styling:** Tailwind CSS classes. Follow shadcn/ui patterns. Responsive-first.
-- **Images:** Always use Next.js `<Image>` component with alt text. Never use raw `<img>`.
+- **Styling:** Tailwind CSS classes. Follow shadcn/ui patterns (currently custom components). Responsive-first.
+- **Images:** Use Next.js `<Image>` component with alt text. Never use raw `<img>`.
 
 ### Folder Organization
 
-- Components go in `src/components/` (ui, layout, sections, forms).
-- Feature-specific logic goes in `src/features/`.
-- Firebase configuration goes in `src/lib/firebase/`.
+- Components go in `src/components/` (auth, forms, layout, sections, seo).
+- Firebase data access goes in `src/lib/firebase/` (queries/mutations per domain).
 - Custom hooks go in `src/hooks/`.
 - TypeScript types go in `src/types/`.
 - Utility functions go in `src/utils/`.
 - Config constants go in `src/config/`.
+- Email templates go in `src/emails/`.
 
 ### Form Handling
 
@@ -525,49 +485,51 @@ A feature is complete only when:
 
 ## Development Roadmap
 
-The project follows a 7-phase incremental build strategy:
+The project follows a 7-phase incremental build strategy (see `docs/05_TASKS.md`).
 
-### Phase 1: Project Foundation (Tasks 001–005)
-- Initialize Next.js project with TypeScript and App Router
-- Install and configure shadcn/ui (Button, Card, Input, Dialog, Form)
-- Create scalable folder architecture
-- Configure Firebase (Firestore, Auth, Storage)
-- Set up environment variables
+### Phase 1: Project Foundation — Mostly complete
+- ✅ Next.js + TypeScript + App Router + ESLint + Tailwind v4
+- ⬜ shadcn/ui (Button, Card, Input, Dialog, Form) — **not installed**
+- ✅ Folder architecture
+- ✅ Firebase configured (Firestore, Auth, Storage initialized)
+- ✅ Environment variables
 
-### Phase 2: Public Website (Tasks 006–012)
-- Build global layout (Navbar, Footer, Container, Section)
-- Create homepage with all sections (Hero, Problem, Services, Industries, Portfolio, Process, Testimonials, CTA)
-- Create About, Services, Portfolio, Blog, and Contact pages
+### Phase 2: Public Website — Mostly complete
+- ✅ Global layout (Navbar, Footer, PublicShell)
+- ✅ Homepage with all sections
+- ✅ About, Mission, Services, Industries, Portfolio, Blog, Contact, legal pages
+- ✅ SEO system, sitemap, robots, GA
 
-### Phase 3: Admin CMS (Tasks 013–019)
-- Build admin authentication with Firebase Auth
-- Create admin dashboard with sidebar navigation
-- Implement CRUD for services, blogs, portfolio, and testimonials
-- Set up media management with Firebase Storage
+### Phase 3: Admin CMS — Partially complete
+- ⬜ Admin authentication (simulated only — real Firebase Auth planned)
+- ✅ Admin dashboard with sidebar navigation
+- ✅ Blog CRUD (Firestore)
+- ✅ Inquiries/leads inbox
+- ✅ Media management (Cloudinary)
+- ⬜ CRUD for services, portfolio, testimonials
+- ⬜ SEO settings page
 
-### Phase 4: SEO & Growth (Tasks 020–023)
-- Implement dynamic metadata system
-- Generate dynamic sitemap
-- Add JSON-LD structured data
-- Integrate Google Analytics, Search Console, conversion tracking
+### Phase 4: SEO & Growth — Complete
+- ✅ Dynamic metadata system
+- ✅ Dynamic sitemap + robots
+- ✅ JSON-LD structured data
+- ✅ Google Analytics + Search Console
 
-### Phase 5: Advanced Features (Tasks 024–026)
-- AI chatbot for website visitors
-- AI content assistant for admin CMS
-- Lead management dashboard
+### Phase 5: Advanced Features — Not started
+- ⬜ AI chatbot for website visitors
+- ⬜ AI content assistant for admin CMS
+- ⬜ Lead management dashboard
 
-### Phase 6: Testing (Tasks 027–029)
-- Unit tests with Vitest
-- Component tests with React Testing Library
-- End-to-end tests with Playwright
+### Phase 6: Testing — Not started
+- ⬜ Unit tests with Vitest
+- ⬜ Component tests with React Testing Library
+- ⬜ End-to-end tests with Playwright
 
-### Phase 7: Deployment (Tasks 030–033)
-- Production configuration (Vercel + Firebase)
-- Security review (Firebase rules, auth, validation, permissions)
-- Performance optimization (images, bundle, speed, queries)
-- Final launch checklist (SEO, analytics, security, mobile, forms, error pages, backups)
-
-**Current status:** No tasks started. The project is ready to begin Phase 1.
+### Phase 7: Deployment — Not started
+- ⬜ Production configuration (Vercel + Firebase)
+- ⬜ Security review (Firebase rules, auth, validation, permissions)
+- ⬜ Performance optimization
+- ⬜ Final launch checklist
 
 ---
 
@@ -590,14 +552,15 @@ The project follows a 7-phase incremental build strategy:
 
 | Aspect | Status |
 |--------|--------|
-| Project scaffolding | Complete (Next.js 16 + TypeScript + Tailwind v4) |
-| Custom code | None (default create-next-app template) |
-| Components | None created |
-| Routes | Only `/` (default template) |
-| Firebase | Not configured |
-| shadcn/ui | Not installed |
+| Project scaffolding | Complete (Next.js 16 + TypeScript + Tailwind v4 + React Compiler) |
+| Public website | Implemented (home, about, mission, services, industries, portfolio, blog, contact, legal) |
+| Admin CMS | Partial (blog CRUD, inquiries, media) — services/portfolio/testimonials/seo pending |
+| Authentication | Simulated (env-var + localStorage) — real Firebase Auth planned |
+| Firebase | Configured — Firestore (`blogPosts`, `leads`, `media`) |
+| Media storage | Cloudinary (Firebase Storage initialized but unused) |
+| Email | Implemented (Nodemailer SMTP + HTML templates) |
+| shadcn/ui | Not installed (custom Tailwind components) |
 | Testing | Not set up |
-| AI agents | Directory created (`agents/`), no agent files added yet |
-| Documentation | Comprehensive (6 spec documents) |
-| Git history | 2 commits (scaffolding + documentation) |
-| Development tasks started | 0 of 33 |
+| SEO | Complete (metadata, JSON-LD, sitemap, robots, GA, Search Console) |
+| Git history | 13 commits on `main` (`type(scope): description` style) |
+| Known technical debt | `any` in `src/types/lead.ts:19`; oversized pages (`terms` 1240 lines, `services/[slug]` 603, `industries/[slug]` 556); stubs in `CloudTransition.tsx`, `PageHeader.tsx`, `service-constants.ts` |
