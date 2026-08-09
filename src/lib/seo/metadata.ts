@@ -23,7 +23,7 @@ export function buildMetadata({
   keywords,
 }: BuildMetadataOptions): Metadata {
   const url = `${SITE_URL}${path}`;
-  const image = ogImage || `${SITE_URL}/og-image.png`;
+  const image = ogImage || `${SITE_URL}/craftly-studio-digital-agency-vapi-gujarat.jpg`;
 
   return {
     title,

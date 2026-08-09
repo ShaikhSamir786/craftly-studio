@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     description: BUSINESS_INFO.shortDescription,
     images: [
       {
-        url: `${SITE_URL}/og-image.png`,
+        url: `${SITE_URL}/craftly-studio-digital-agency-vapi-gujarat.jpg`,
         width: 1200,
         height: 630,
         alt: `${SITE_NAME} - Website Development Company Vapi`,
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${SITE_NAME} | Web Development Vapi`,
     description: BUSINESS_INFO.shortDescription,
-    images: [`${SITE_URL}/og-image.png`],
+    images: [`${SITE_URL}/craftly-studio-digital-agency-vapi-gujarat.jpg`],
   },
   robots: {
     index: true,
