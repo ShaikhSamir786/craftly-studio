@@ -52,7 +52,8 @@ pnpm lint          # Run ESLint
 ## Folder Structure
 
 ```
-agents/              # AI agent definitions
+agents/              # Generic AI agent definitions (tool-agnostic — Cursor, Claude Code, etc.)
+.opencode/agent/     # opencode subagents — loaded natively by opencode
 src/
 ├── app/             # Next.js App Router (routes and pages)
 ├── components/      # Reusable UI components
@@ -129,7 +130,27 @@ src/
 | `docs/04_AI_RULES.md` | Detailed AI Coding Guidelines |
 | `docs/05_TASKS.md` | Development Roadmap (33 tasks, 7 phases) |
 | `docs/DESIGN.md` | Visual Design Specification |
-| `agents/` | AI agent definitions directory |
+| `agents/` | Generic (tool-agnostic) AI agent definitions |
+| `.opencode/agent/` | opencode subagents (frontend, admin-cms, backend, seo, ui-ux, testing, tech-lead) |
+
+---
+
+## AI Agents
+
+Purpose-built agents for this codebase live in two places (see `agents/README.md` for details):
+
+| Agent | Purpose |
+|-------|---------|
+| `frontend` | Public website pages, sections, components, forms, animations |
+| `admin-cms` | Admin dashboard, blog/inquiries/media CRUD, auth guards |
+| `backend` | Firebase (Firestore/Auth/Storage), Cloudinary, API routes, email |
+| `seo` | Metadata, JSON-LD, sitemap, robots, analytics |
+| `ui-ux` | DESIGN.md tokens, component patterns, accessibility, animations |
+| `testing` | Vitest unit, React Testing Library component, Playwright E2E tests |
+| `tech-lead` | Architecture, conventions, planning, refactoring, code review |
+
+- **opencode:** subagents in `.opencode/agent/` — edit there directly; restart opencode to reload.
+- **Other assistants (Cursor, Claude Code, Copilot, ChatGPT):** generic definitions in `agents/generic/`.
 
 ---
 
