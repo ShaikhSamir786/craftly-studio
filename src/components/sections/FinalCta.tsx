@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function FinalCta() {
   return (
@@ -19,6 +20,16 @@ export default function FinalCta() {
         >
           {/* Deep glowing background meshes */}
           <div className="absolute inset-0 pointer-events-none z-0">
+            <div className="absolute inset-0">
+              <Image
+                src="/craftly-studio-digital-agency-vapi-gujarat.jpg"
+                alt=""
+                fill
+                sizes="100vw"
+                className="object-cover opacity-25"
+              />
+              <div className="absolute inset-0 bg-[#0b0b0b]/70" />
+            </div>
             <div className="absolute -top-24 -right-24 w-96 h-96 bg-accent/20 rounded-full blur-[100px]" />
             <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-orange-500/10 rounded-full blur-[120px]" />
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff02_1px,transparent_1px),linear-gradient(to_bottom,#ffffff02_1px,transparent_1px)] bg-[size:32px_32px]" />

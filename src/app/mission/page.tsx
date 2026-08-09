@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import FinalCta from "@/components/sections/FinalCta";
 import Breadcrumbs from "@/components/seo/Breadcrumbs";
@@ -167,6 +168,15 @@ export default function MissionPage() {
                 business goals, industry dynamics, and customer behavior of our
                 clients in south Gujarat and beyond.
               </p>
+            </div>
+            <div className="mt-16 rounded-3xl overflow-hidden relative border border-outline aspect-[16/9]">
+              <Image
+                src="/craftly-studio-digital-agency-vapi-gujarat.jpg"
+                alt="Craftly Studio - web development agency in Vapi, Gujarat"
+                fill
+                sizes="(max-width: 768px) 100vw, 896px"
+                className="object-cover"
+              />
             </div>
           </div>
         </div>

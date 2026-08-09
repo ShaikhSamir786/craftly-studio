@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import FinalCta from "@/components/sections/FinalCta";
 import Breadcrumbs from "@/components/seo/Breadcrumbs";
 import { buildMetadata } from "@/lib/seo/metadata";
@@ -61,9 +62,13 @@ export default function AboutPage() {
               </p>
             </div>
             <div className="aspect-square bg-surface rounded-3xl overflow-hidden relative border border-outline">
-                <div className="absolute inset-0 flex items-center justify-center text-gray-400">
-                    Team Photo Placeholder
-                </div>
+              <Image
+                src="/craftly-studio-digital-agency-vapi-gujarat.jpg"
+                alt="The Craftly Studio team - digital agency based in Vapi, Gujarat"
+                fill
+                sizes="(max-width: 768px) 100vw, 600px"
+                className="object-cover"
+              />
             </div>
           </div>
         </div>
